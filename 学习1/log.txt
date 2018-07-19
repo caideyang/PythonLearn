@@ -1,0 +1,12 @@
+2018-04-25 18:00:43,891 - 20180425.py[line:29] - INFO: this is a loggging info message
+2018-04-25 18:00:43,891 - 20180425.py[line:31] - WARNING: this is loggging a warning message
+2018-04-25 18:00:43,892 - 20180425.py[line:32] - ERROR: this is an loggging error message
+2018-04-25 18:00:43,892 - 20180425.py[line:33] - CRITICAL: this is a loggging critical message
+2018-04-25 18:00:43,892 - 20180425.py[line:41] - INFO: this is a loggging info message
+2018-04-25 18:00:43,892 - 20180425.py[line:43] - WARNING: this is loggging a warning message
+2018-04-25 18:00:43,893 - 20180425.py[line:44] - ERROR: this is an loggging error message
+2018-04-25 18:00:43,893 - 20180425.py[line:45] - CRITICAL: this is a loggging critical message
+2018-04-25 18:01:35,205 - 20180425.py[line:31] - INFO: this is a loggging info message
+2018-04-25 18:01:35,206 - 20180425.py[line:33] - WARNING: this is loggging a warning message
+2018-04-25 18:01:35,206 - 20180425.py[line:34] - ERROR: this is an loggging error message
+2018-04-25 18:01:35,206 - 20180425.py[line:35] - CRITICAL: this is a loggging critical message

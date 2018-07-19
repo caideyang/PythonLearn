@@ -1,0 +1,1 @@
+2018-07-02 13:54:28,102 - mqttCli.py[line:45] - INFO: Topic:command/04156D/u-1/led Message:b'{\n"monitoringUnit": "04156D",\n"sampleUnit": "u-1",\n"channel": "led",\n"parameters": {\n"r": -1,\n"g": -1,\n"b": -1\n},\n"phase": "complete",\n"timeout": 1000,\n"operator": "admin",\n"startTime": "2018-07-02T05:54:27Z",\n"endTime": "2018-06-28T00:17:31Z",\n"result": "ok"\n}'
