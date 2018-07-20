@@ -6,9 +6,14 @@ import json
 class FtpServer(socketserver.BaseRequestHandler):
 
     def authenticate(self): #客户端认证
-        pass
+        auth = json.loads(self.request.recv(1024).strip())
+        if auth['username'] == 'cdy' and auth['password'] == "password":
+            self.request.send(b"OK")
+        else:
+            self.request.send(b"Wrong!")
 
     def cmd_put(self,*args): #上传文件方法
+        print(args)
         cmd_dict = args[0]
         filename = cmd_dict['filename']
         filesize = cmd_dict['filesize']
@@ -18,7 +23,7 @@ class FtpServer(socketserver.BaseRequestHandler):
         f = open(filename, 'wb')
         while recv_size < filesize:
             data = self.request.recv(1024)
-            recv_size += 1024
+            recv_size += len(data)
             f.write(data)
         else:
             f.close()
@@ -30,16 +35,20 @@ class FtpServer(socketserver.BaseRequestHandler):
 
 
     def handle(self):
-        print("客户端IP：{}，端口:{} 连接成功".format(self.client_address[0], self.client_address[1]))
+
         while True:
             try:  # 使用try except捕捉客户端连接断开异常
-                self.msg_dict = json.loads(self.request.recv(1024).strip().decode())
-                print("{} 端口wrote: {}".format(self.client_address[1],self.msg_dict))
-                cmd_str = self.msg_dict['action']
+                self.authenticate()
+                print("客户端IP：{}，端口:{} 连接成功".format(self.client_address[0], self.client_address[1]))
+                self.data = self.request.recv(1024).strip()
+                cmd_dict = json.loads(self.data.decode())
+                # self.msg_dict = json.loads(self.request.recv(1024).strip().decode())
+                print("{} 端口wrote: {}".format(self.client_address[1],cmd_dict))
+                cmd_str = cmd_dict['action']
                 if hasattr(self, "cmd_%s" % cmd_str):  # 使用hasattr检测类是否有这个方法
                     self.request.send(b"ok !")
                     func = getattr(self, "cmd_%s" % cmd_str)  # 使用getattr反射到相应的方法
-                    func(self.msg_dict)  # 调用对应的方法
+                    func(cmd_dict)  # 调用对应的方法
                 else:
                     self.request.send("error !")
             except ConnectionResetError as e:

@@ -43,7 +43,7 @@
         this.init(plot);
     };
 
-    // main plugin function
+    // server plugin function
     FlotTooltip.prototype.init = function (plot) {
         var that = this;
 

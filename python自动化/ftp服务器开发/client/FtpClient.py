@@ -17,9 +17,18 @@ class FtpClient(object):
         print(msg)
     def connect(self,ip,port):
         self.client.connect((ip,port))
-
+    def authenticate(self):
+        self.username = input("username>>>")
+        self.password = input("password>>>")
+        self.auth = {"username":self.username,"password":self.password}
+        self.client.send(json.dumps(self.auth).encode())
+        self.result = self.client.recv(1024).strip()
+        if self.result.decode() != 'OK' :
+            exit("Authenticated Failed !")
+        else:
+            print("认证成功！")
     def interactive(self):
-        #self.authenticate() #认证
+        self.authenticate() #认证
         while True:
             cmd = input(">>>").strip() #输入要进行操作的指令和对应的文件
             if len(cmd) == 0 : continue #如果输入为空，则重写输入

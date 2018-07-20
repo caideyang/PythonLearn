@@ -1,7 +1,6 @@
 #encoding:utf-8
 
 import socketserver
-
 class MyTCPHandler(socketserver.BaseRequestHandler):
 
     def handle(self):
