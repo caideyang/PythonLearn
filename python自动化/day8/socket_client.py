@@ -2,7 +2,7 @@
 import socket
 
 client = socket.socket() #申明Socket类型，同时生产socket连接
-client.connect(('localhost',9999))
+client.connect(('localhost',9000))
 while True:
     msg = input(">>>").strip()
     if len(msg) == 0 : continue
